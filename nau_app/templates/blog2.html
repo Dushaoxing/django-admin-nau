@@ -1,0 +1,45 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Log</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        .jumbotron {
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+        .card {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Learning Log</h1>
+        </div>
+
+        {% block content %}
+            {% if blog_list %}
+                {% for blog in blog_list %}
+                    <div class="card my-4">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ blog.title }}</h2>
+                            <p class="card-text">{{ blog.pub_date }}</p>
+                            <h4 class="card-text">{{ blog.data }}</h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
